@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>템툰 상품 링크</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jua&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* 템툰 미니멀: 크림 바탕, 얇은 갈색 선, 주황 버튼 하나만 강조. 배너 → 프로필 → 상품 목록. */
+  --bg: #fffaee;
+  --surface: #ffffff;
+  --ink: #3a2414;
+  --muted: #8a735f;
+  --line: #eadfca;
+  --accent: #ff6b1a;
+  --yellow: #ffd23f;
+  --font-display: "Jua", "IBM Plex Sans KR", sans-serif;
+  --font-body: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--bg); color: var(--ink); font-family: var(--font-body); line-height: 1.45; -webkit-font-smoothing: antialiased; }
+.wrap { max-width: 480px; margin: 0 auto; }
+.notice { margin: 0; padding: 7px 14px; color: var(--muted); font-size: 11.5px; line-height: 1.45; text-align: center; border-bottom: 1px solid var(--line); word-break: keep-all; text-wrap: balance; }
+.profile { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 28px 16px 4px; text-align: center; }
+.avatar { width: 84px; height: 84px; border-radius: 50%; border: 1.5px solid var(--line); object-fit: cover; }
+h1 { margin: 0; font-family: var(--font-display); font-weight: 400; font-size: 26px; line-height: 1.1; }
+.tagline { margin: 2px 0 0; color: var(--muted); font-size: 13.5px; }
+
+main { padding: 16px 16px 32px; display: flex; flex-direction: column; gap: 10px; }
+.search { position: sticky; top: 0; z-index: 2; padding: 6px 0; background: var(--bg); }
+.search label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+.search input {
+  width: 100%; font: inherit; font-size: 16px; padding: 11px 14px; border-radius: 12px;
+  border: 1px solid var(--line); background: var(--surface); color: var(--ink);
+}
+.search input::placeholder { color: #b3a08c; }
+.search input:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; border-color: transparent; }
+
+.list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.item {
+  display: grid; grid-template-columns: 96px 1fr; gap: 14px;
+  padding: 12px; background: var(--surface); border: 1px solid var(--line); border-radius: 16px;
+  color: inherit; text-decoration: none; scroll-margin-top: 70px;
+}
+.item:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.item.target { border-color: var(--accent); box-shadow: 0 0 0 3px #ffe5d6; }
+.thumb {
+  position: relative; width: 96px; height: 96px; border-radius: 12px; overflow: hidden;
+  background: var(--bg); display: grid; place-items: center; color: #d6c4a8;
+}
+.thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.thumb svg { width: 28px; height: 28px; }
+.badge {
+  position: absolute; left: 6px; top: 6px; min-width: 26px; height: 26px; padding: 0 6px; border-radius: 8px;
+  background: var(--yellow); color: var(--ink);
+  display: grid; place-items: center; font-family: var(--font-display); font-size: 16px; font-variant-numeric: tabular-nums;
+}
+.body { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.name { font-weight: 700; font-size: 15.5px; line-height: 1.35; }
+.no { color: var(--accent); font-variant-numeric: tabular-nums; margin-right: 3px; }
+.tags { display: flex; gap: 5px; flex-wrap: wrap; }
+.tag { font-size: 11px; font-weight: 700; color: var(--accent); }
+.meta { color: var(--muted); font-size: 13px; }
+.buy {
+  margin-top: auto; display: flex; align-items: center; justify-content: center; gap: 4px;
+  min-height: 40px; border-radius: 10px; background: var(--accent); color: #fff;
+  font-family: var(--font-display); font-size: 16px;
+}
+.item:active .buy { filter: brightness(.93); }
+.empty { text-align: center; color: var(--muted); font-size: 14px; padding: 24px 0; }
+footer { color: var(--muted); font-size: 12px; text-align: center; padding-top: 4px; }
+@media (max-width: 350px) { .item { grid-template-columns: 80px 1fr; } .thumb { width: 80px; height: 80px; } }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="notice" role="note">쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.<br>구매하시는 가격은 똑같아요.</p>
+
+  <section class="profile">
+    <img class="avatar" src="img/profile.jpg" alt="템툰 프로필" width="84" height="84">
+    <div><h1>템툰</h1><p class="tagline">살만한 아이템 추천드림</p></div>
+  </section>
+
+  <main>
+    <div class="search">
+      <label for="q">번호나 상품 이름으로 찾기</label>
+      <input id="q" type="search" inputmode="search" placeholder="영상 속 번호나 상품 이름으로 찾기" autocomplete="off">
+    </div>
+
+    <ul class="list" id="list"></ul>
+    <p class="empty" id="empty" hidden>찾는 상품이 없어요. 번호를 다시 확인해 주세요.</p>
+
+    <footer>가격과 재고는 쇼핑몰에서 확인해 주세요.</footer>
+  </main>
+</div>
+
+<script>
+/* ===== 상품 추가는 여기에만 (맨 위에 새 번호를 넣으세요) =====
+   no: 영상에서 말하는 번호 / name: 상품 이름 / note: 짧은 설명 / url: 파트너스 링크
+   img: 상품 사진 파일 (예: "img/5.jpg", 비우면 기본 아이콘)
+   tags: 작은 표시 (예: ["NEW"], ["인기"]) */
+const PRODUCTS = [
+  { no: 1, name: "QCY H3S 무선 블루투스 헤드폰", note: "이어폰 파우치 1개 포함", url: "https://link.coupang.com/a/igFJSb061s", tags: ["NEW"] },
+];
+const BUTTON_TEXT = "최저가 보러가기";
+/* ============================================================= */
+
+const PLACEHOLDER = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="9" cy="10" r="2"/><path d="m4 18 5-5 4 4 3-3 4 4"/></svg>';
+const list = document.getElementById("list");
+const empty = document.getElementById("empty");
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;" }[c]));
+
+function render(q = "") {
+  const t = q.trim().toLowerCase();
+  const rows = PRODUCTS.filter(p => !t || String(p.no) === t || p.name.toLowerCase().includes(t) || (p.note || "").toLowerCase().includes(t));
+  list.innerHTML = rows.map(p => `
+    <li><a class="item" id="p${p.no}" href="${esc(p.url)}" target="_blank" rel="noopener sponsored">
+      <span class="thumb">${p.img ? `<img src="${esc(p.img)}" alt="${esc(p.name)}" loading="lazy">` : PLACEHOLDER}<span class="badge">${p.no}</span></span>
+      <span class="body">
+        <span class="name"><span class="no">${p.no}.</span>${esc(p.name)}</span>
+        ${(p.tags || []).length ? `<span class="tags">${p.tags.map(x => `<span class="tag">${esc(x)}</span>`).join("")}</span>` : ""}
+        ${p.note ? `<span class="meta">${esc(p.note)}</span>` : ""}
+        <span class="buy">${BUTTON_TEXT} <span aria-hidden="true">›</span></span>
+      </span>
+    </a></li>`).join("");
+  empty.hidden = rows.length > 0;
+  highlight();
+}
+/* 주소 끝에 #p3 을 붙이면 3번 상품으로 바로 이동하고 강조돼요 */
+function highlight() {
+  document.querySelectorAll(".item.target").forEach(el => el.classList.remove("target"));
+  const id = location.hash.slice(1);
+  if (!/^p\d+$/.test(id)) return;
+  const el = document.getElementById(id);
+  if (el) { el.classList.add("target"); el.scrollIntoView({ block: "center" }); }
+}
+window.addEventListener("hashchange", highlight);
+document.getElementById("q").addEventListener("input", e => render(e.target.value));
+render();
+</script>
+</body>
+</html>
